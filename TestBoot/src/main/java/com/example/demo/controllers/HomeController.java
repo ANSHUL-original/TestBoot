@@ -78,6 +78,8 @@ public class HomeController {
 		List<Object []> list=userDao.findFunction1();
 		mv.addObject("list", list);
 		mv.setViewName("showfindfun1");
+		System.out.println("test");
+		System.out.println("test2");
 		return mv;
 	}
 	@RequestMapping("/findfun2")
