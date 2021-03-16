@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.UserDao;
@@ -29,7 +28,16 @@ public class HomeController {
 		return "adduserpage";
 	}
 	
-	
+//	@RequestMapping("/alluserData")
+//	public ModelAndView allUserDatamethod() {
+//		ModelAndView mv=new ModelAndView();
+//		List<User> namelist=userDao.getNameList();
+//		mv.addObject("namelist", namelist);
+//		System.out.println(namelist+"#######");
+//		mv.setViewName("alluserdata");
+//		return mv;
+//	}
+//	
 	
 	@RequestMapping("/adduser")
 	public String addUserMethod(User user) {
@@ -41,7 +49,9 @@ public class HomeController {
 	public ModelAndView showAllMethod() {
 		ModelAndView mv=new ModelAndView();
 		List<User> list=userDao.getAllUsers();
+		List<Object> namelist=userDao.getNameList();
 		mv.addObject("list", list);
+		mv.addObject("namelist",namelist);
 		mv.setViewName("alluserdata");
 		return mv;
 	}
@@ -104,6 +114,17 @@ public class HomeController {
 		List<Object []> list=userDao.findFunction4();
 		mv.addObject("list", list);
 		mv.setViewName("showfindfun4");
+		return mv;
+	}
+	
+	@PostMapping("/filterTechnology")
+	public ModelAndView filterTech(String uTech,String uName ) {
+		ModelAndView mv=new ModelAndView();
+		List<User> list=userDao.applyFilterTechDao(uTech,uName);
+		List<Object> namelist=userDao.getNameList();
+		mv.addObject("list" ,list);
+		mv.addObject("namelist",namelist);
+		mv.setViewName("alluserdata");
 		return mv;
 	}
 	

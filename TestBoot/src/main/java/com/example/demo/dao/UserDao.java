@@ -33,16 +33,22 @@ public class UserDao {
 		return userRepo.findFunction1();
 	}
 	public List<Object []> findFunction2() {
-		System.out.println("find fun1");
+		System.out.println("find fun2");
 		return userRepo.findFunction2();
 	}
 	public List<Object []> findFunction3() {
-		System.out.println("find fun1");
+		System.out.println("find fun3");
 		return userRepo.findFunction3();
 	}
 	public List<Object []> findFunction4() {
-		System.out.println("find fun1");
+		System.out.println("find fun4");
 		return userRepo.findFunction4();
+	}
+	public List<User> applyFilterTechDao(String uTech,String uName) {
+		return userRepo.applyFilterTech(uTech,uName);
+	}
+	public List<Object> getNameList() {
+		return userRepo.getNameList();
 	}
 	
 
